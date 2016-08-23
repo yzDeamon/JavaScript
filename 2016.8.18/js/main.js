@@ -14,8 +14,12 @@ window.onload=function(){
 		}
     };
     oBtn.onclick=function(){
-	   oLi.innerHTML += "<div class='Li-txt-a'>" + oName.innerHTML + oTxt.value + "</div><br>";
-	   oTxt.value="";
+	   if(oTxt.value==""){
+		  alert("写点东西吧")
+	   }else{
+		  oLi.innerHTML = "<div class='Li-txt-a'>" + oName.innerHTML + oTxt.value + "</div><br>"+oLi.innerHTML;
+		  oTxt.value="";
+	   }
     };
 
 }
