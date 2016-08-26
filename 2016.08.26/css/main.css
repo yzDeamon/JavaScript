@@ -1,0 +1,24 @@
+body,ul, li{ margin: 0; padding: 0; font-family: 微软雅黑; color: #666;font-size: 18px;}
+li{ list-style-type: none;}
+a{ text-decoration: none;}
+input{ outline: none;}
+img{ border: none;}
+
+.bounced{width: 512px; height: 286px; position: fixed; top: 50%; margin-top: -143px; left: 50%; margin-left: -250px; background: #f1f1f1; z-index: 111;}
+.bounced-bt{ width: 362px; height: 25px;margin: auto; text-align: center; line-height: 25px; font-size: 18px;}
+.bounced-bt img,.bounced-bt span{ display: block; float: left;}
+.bounced-bt span{ background: #fff; width: 324px;}
+.bounced-main{ width: 517px; height: 211px; background: #f1f1f1;  border-radius: 4px; padding-top: 25px; position: relative; }
+.bounced-main .bounced-name,.bounced-main .bounced-post{ margin-top: 32px;}
+.bounced-main .bounced-name{ width: 120px; height: 30px; line-height: 30px; float: left; text-align: right;}
+.bounced-main .bounced-post{ width: 390px; float: left;}
+.bounced-main .bounced-post input{ width: 270px; height: 30px; line-height: 30px; border: 1px solid #fac87c; margin-left: 10px; border-radius: 4px; padding: 0 15px;}
+.bounced-main .bounced-btn{ width: 80px; height: 60px; margin: auto;}
+.bounced-btn input{ width: 80px; height: 30px; line-height: 30px; text-align: center; color: #fff; background: #fac87c; border: 0; border-radius: 4px; font-size: 18px; margin-top: 30px;}
+.bounced-close{ position: absolute; width: 36px; height: 36px; line-height: 36px; display: block; text-align: center; right: -10px; top: 8px; z-index: 125; background: #fff; border-radius: 100%;}
+.bounced-post img{ margin-left: 10px;}
+#false,#false-a,#false-b,#false-c{ display: none;}
+#true,#true-a,#true-b,#true-c{ display: none;}
+.bounced-news,.bounced-news-a,.bounced-news-b,.bounced-news-c{ display: none; font-size: 12px; color: #f00; padding-top: 20px; position: absolute; top: 75px; left: 130px;}
+.bounced-news-a,.bounced-news-c{ top: 135px;}
+/*登陆注册结束*/
