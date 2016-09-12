@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+    <TITLE> ZTREE DEMO </TITLE>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <script type="text/javascript" src="js/jquery-3.0.0.min.js"></script>
+</HEAD>
+<script>
+    $(function(){
+        $("#State").append("<option value='0'>请选择..</option>");
+        $("#Citys").append("<option value='0'>请选择..</option>");
+        $("#Region").append("<option value='0'>请选择..</option>");
+    })
+    $.ajax({
+        type:"get",
+        url:"js/LocList.xml",
+        dataType:"xml",
+        success:function(xmldoc){
+            var valueList = $(xmldoc).find("State");
+            $(valueList).each(function(){
+                $("#State").append("<option value='"+$(this).attr("Code")+"'>"+$(this).attr("Name")+"</option>");
+            })
+        }
+    })
+    //省份改变时
+    $(function(){
+        $("#State").change(function(){
+            if($(this).val() == "0")
+            {
+                $("#Citys").find("option").remove();
+                $("#Citys").append("<option value='0'>请选择..</option>");
+                $("#Region").find("option").remove();
+                $("#Region").append("<option value='0'>请选择..</option>");
+            }else
+            {
+                $("#Citys").find("option").remove();
+                $("#Citys").append("<option value='0'>请选择..</option>");
+                $("#Region").find("option").remove();
+                $("#Region").append("<option value='0'>请选择..</option>");
+                var selectvalue = $(this).val(); //得到选省份的value
+                console.log(selectvalue);
+                $.ajax({
+                    type:"get",
+                    url:"js/LocList.xml",
+                    dataType:"xml",
+                    success:function(citys){
+                        var xmlcity = citys;
+                        $(xmlcity).find("State[Code="+selectvalue+"]").each(function(){
+                            $(this).find("City").each(function(){ //得到国家下所有的省
+                                $("#Citys").append("<option value='"+$(this).attr("Code")+"'>"+$(this).attr("Name")+"</option>");
+                            })
+                        })
+                    }
+                })
+            }
+        })
+    })
+    //城市改变后
+    $(function(){
+        $("#Citys").change(function(){
+            if($(this).val() == "0"){
+                $("#Region").find("option").remove();
+                $("#Region").append("<option value='0'>请选择..</option>");
+            }
+            else
+            {
+                var selectvalue = $(this).val();
+                var countryvalue = $("#State").val();
+                $.ajax({
+                    type:"get",
+                    url:"js/LocList.xml",
+                    dataType:"xml",
+                    success:function(xmldoc){
+                        $("#Region").find("option").remove();
+                        $(xmldoc).find("State>City[Code="+selectvalue+"]").each(function(){
+                            $(this).find("Region").each(function(){
+                                $("#Region").append("<option value='"+$(this).attr("Code")+"'>"+$(this).attr("Name")+"</option>");
+                            })
+                        })
+                    }
+                })
+            }
+        })
+    })
+
+
+</script>
+<BODY>
+<div>
+    <tr><td>所在国家：<select name="State" id="State"></select></td></tr>
+    <tr><td>所在地区：<select name="Citys" id="Citys"></select>
+        <select name="Region" id="Region"></select></td></tr>
+</div>
+</BODY>
+</HTML>
